@@ -1,0 +1,36 @@
+#include <iostream>
+#include <vector>
+/*ALL HOURS WILL BE IN 24 HOUR FORMAT*/
+int main() {
+    std::vector<int> traffic(24);
+    int totalVehicles = 0;
+    int peakHour = 0;
+    int peakTraffic = 0;
+
+    // Input traffic data for each hour
+    for (int i = 0; i < 24; ++i) {
+        std::cout << "Enter the number of vehicles for hour " << i << ": "; /*STARTING FROM HOUR 0 TILL HOUR 24*/
+        std::cin >> traffic[i];
+        totalVehicles += traffic[i];
+
+        if (traffic[i] > peakTraffic) {
+            peakTraffic = traffic[i];
+            peakHour = i;
+        }
+    }
+
+    // Identify hours with zero traffic
+    std::cout << "Hours with zero traffic: ";
+    for (int i = 0; i < 24; ++i) {
+        if (traffic[i] == 0) {
+            std::cout << i << " ";
+        }
+    }
+    std::cout << std::endl;
+
+    // Output peak traffic hour and total vehicle count
+    std::cout << "Peak traffic hour: " << peakHour << " with " << peakTraffic << " vehicles." << std::endl;
+    std::cout << "Total vehicle count for the day: " << totalVehicles << std::endl;
+
+    return 0;
+}
