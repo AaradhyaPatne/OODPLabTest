@@ -1,0 +1,98 @@
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+class Doctor {
+private:
+    string name;
+    int id;
+    string specialization;
+    int patientsAttended;
+    double consultationFee;
+    string dateOfJoining;
+
+public:
+    // Constructor
+    Doctor(string n, int i, string s, int p, double c, string d)
+        : name(n), id(i), specialization(s), patientsAttended(p), consultationFee(c), dateOfJoining(d) {}
+
+    // Member function to get doctor details
+    void getDoctorDetails() {
+        cout << "Enter Doctor Name: ";
+        cin >> name;
+        cout << "Enter Doctor ID: ";
+        cin >> id;
+        cout << "Enter Specialization: ";
+        cin >> specialization;
+        cout << "Enter Number of Patients Attended: ";
+        cin >> patientsAttended;
+        cout << "Enter Consultation Fee: ";
+        cin >> consultationFee;
+        cout << "Enter Date of Joining: ";
+        cin >> dateOfJoining;
+    }
+
+    // Member function to calculate total earnings
+    double calculateTotalEarnings() {
+        return patientsAttended * consultationFee;
+    }
+
+    // Member function to display doctor details
+    void displayDoctorDetails() {
+        cout << "Doctor Name: " << name << endl;
+        cout << "Doctor ID: " << id << endl;
+        cout << "Specialization: " << specialization << endl;
+        cout << "Number of Patients Attended: " << patientsAttended << endl;
+        cout << "Consultation Fee: " << consultationFee << endl;
+        cout << "Date of Joining: " << dateOfJoining << endl;
+        cout << "Total Earnings: " << calculateTotalEarnings() << endl;
+    }
+
+    // Member function to check if earnings are more than 50000
+    bool earningsMoreThan50000() {
+        return calculateTotalEarnings() > 50000;
+    }
+};
+
+int main() {
+    vector<Doctor> doctors;
+    int numDoctors;
+
+    cout << "Enter number of doctors: ";
+    cin >> numDoctors;
+
+    for (int i = 0; i < numDoctors; ++i) {
+        string name, specialization, dateOfJoining;
+        int id, patientsAttended;
+        double consultationFee;
+
+        cout << "Enter details for doctor " << i + 1 << ":" << endl;
+        cout << "Name: ";
+        cin >> name;
+        cout << "ID: ";
+        cin >> id;
+        cout << "Specialization: ";
+        cin >> specialization;
+        cout << "Number of Patients Attended: ";
+        cin >> patientsAttended;
+        cout << "Consultation Fee: ";
+        cin >> consultationFee;
+        cout << "Date of Joining: ";
+        cin >> dateOfJoining;
+
+        Doctor doc(name, id, specialization, patientsAttended, consultationFee, dateOfJoining);
+        doctors.push_back(doc);
+    }
+
+    cout << "\nDoctors earning more than 50000:" << endl;
+    for (const auto& doc : doctors) {
+        if (doc.earningsMoreThan50000()) {
+            doc.displayDoctorDetails();
+            cout << endl;
+        }
+    }
+
+    return 0;
+}
